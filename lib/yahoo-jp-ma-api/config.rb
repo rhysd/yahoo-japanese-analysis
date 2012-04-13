@@ -12,6 +12,14 @@ module YahooMA
             self
         end
 
+        def options
+            options = {}
+            CONFIG_KEYS.each do |k|
+                options[k] = send k
+            end
+            options
+        end
+
         def self.extended base
             base.reset
         end
