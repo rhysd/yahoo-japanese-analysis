@@ -13,11 +13,11 @@ module YahooMA
         end
 
         def options
-            options = {}
+            opts = {}
             CONFIG_KEYS.each do |k|
-                options[k] = send k
+                opts[k] = send k
             end
-            options
+            opts
         end
 
         def self.extended base

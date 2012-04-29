@@ -4,6 +4,7 @@
 require './pre_test.rb'
 require 'yahoo-jp-ma-api'
 require 'test/unit'
+require 'yaml'
 
 class TestKeyphrase < Test::Unit::TestCase
     def setup
@@ -20,7 +21,8 @@ class TestKeyphrase < Test::Unit::TestCase
 
     def test_configure
         appid = YAML.load(File.open('credential.yaml').read)['my_appid']
-        assert_not_nil @client.configure{|config| config.app_key = appid}
+        @client.configure{|config| config.app_key = appid}
+        assert_equal @client.app_key,appid
     end
 
     def test_keyphrase

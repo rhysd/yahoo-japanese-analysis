@@ -1,4 +1,3 @@
-
 require 'yahoo-jp-ma-api/request'
 require 'rexml/document'
 

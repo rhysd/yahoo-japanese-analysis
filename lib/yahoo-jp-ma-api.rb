@@ -1,9 +1,6 @@
 require 'yahoo-jp-ma-api/client'
-require 'yahoo-jp-ma-api/config'
 
 module YahooMA
-    extend Config
-
     class << self
         def new options={}
             @client ||= YahooMA::Client.new options
