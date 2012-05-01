@@ -8,6 +8,7 @@ require 'yaml'
 
 class TestKeyphrase < Test::Unit::TestCase
     def setup
+        @appid = YAML.load(File.open('credential.yaml').read)['my_appid']
         @client = YahooMA::Client.new
     end
 
@@ -20,12 +21,17 @@ class TestKeyphrase < Test::Unit::TestCase
     end
 
     def test_configure
-        appid = YAML.load(File.open('credential.yaml').read)['my_appid']
-        @client.configure{|config| config.app_key = appid}
-        assert_equal @client.app_key,appid
+        @client.configure{|config| config.app_key = @appid}
+        assert_equal @client.app_key,@appid
     end
 
     def test_keyphrase
+        @client.configure{|config| config.app_key = @appid}
         assert_respond_to @client,:keyphrase
+        text = "RubyやC++も良いけれど，そろそろHaskellを習得したいなぁ．"
+        result = nil
+        assert_nothing_raised{ result = @client.keyphrase :sentence => text }
+        assert_not_nil result
+        p result
     end
 end

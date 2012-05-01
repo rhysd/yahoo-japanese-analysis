@@ -1,18 +1,20 @@
 require 'rexml/document'
 require 'uri'
 require 'net/http'
-require 'yahoo-jp-ma-api/config.rb'
 
 module YahooMA
     module Request
         def request path,app_id,params={}
             uri = URI.parse path
-            queries = params.map{|k,v| k.to_s+'='+v.to_s}.join('&')
+            queries = 'appid='+app_id+'&'+params.map{|k,v| k.to_s+'='+v.to_s}.join('&')
+
+            puts "request: "+path+"?"+queries
+
             req = Net::HTTP::Post.new uri.path
-            res = Net::HTTP.start(url.host,url.port) do |http|
-                http.request req, query
+            res = Net::HTTP.start(uri.host,uri.port) do |http|
+                http.request req, queries
             end
-            res
+            res.body
         end
     end
 end

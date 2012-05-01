@@ -3,17 +3,21 @@ require 'rexml/document'
 
 module YahooMA
     class Client
-        module Keyphrase
-            def keyphrase params
-                raise "keyphrase requires following params: sentence" unless  params.include? :sentence
-                res = request 'http://jlp.yahooapis.jp/KeyphraseService/V1/extract',app_key,params
-                keyphrases = []
-                doc = REXML::Document.new(body).elements['ResultSet/']
-                doc.elements.each('Result') do |result|
-                    keyphrases[result['Keyphrase'].text] = result['Score'].text.to_i
-                end
-                keyphrases
+        include YahooMA::Request
+
+        def keyphrase params
+            raise "keyphrase requires following params: sentence" unless  params.include? :sentence
+            raise "appid is needed" unless self.app_key
+            res = request 'http://jlp.yahooapis.jp/KeyphraseService/V1/extract',self.app_key,params
+            keyphrases = {}
+            puts res
+            doc = REXML::Document.new(res).elements['ResultSet']
+            doc.elements.each('Result') do |result|
+                phrase = result.elements['Keyphrase'].get_text.to_s
+                score = result.elements['Score'].get_text.to_s.to_i
+                keyphrases[phrase] = score
             end
+            keyphrases
         end
     end
 end
