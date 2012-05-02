@@ -30,8 +30,10 @@ class TestKeyphrase < Test::Unit::TestCase
         assert_respond_to @client,:keyphrase
         text = "RubyやC++も良いけれど，そろそろHaskellを習得したいなぁ．"
         result = nil
-        assert_nothing_raised{ result = @client.keyphrase :sentence => text }
+        assert_nothing_raised{ result = @client.keyphrase text }
         assert_not_nil result
-        p result
+        assert_not_nil result['Ruby']
+        assert_not_nil result['Haskell']
+        assert_not_nil result['C']
     end
 end
