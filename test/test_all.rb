@@ -36,4 +36,30 @@ class TestKeyphrase < Test::Unit::TestCase
         assert_not_nil result['Haskell']
         assert_not_nil result['C']
     end
+
+    def test_morpheme_analysis
+        @client.configure{|config| config.app_key = @appid}
+        assert_respond_to @client, :morpheme_analysis
+        text = "庭には二羽ニワトリがいる。"
+        result = nil
+        assert_nothing_raised{ result = @client.morpheme_analysis text }
+        assert_not_nil result
+        assert_not_nil result[:ResultSet][:ma_result]
+    end
+
+    # test Hash#from_xml
+    def test_utility
+        require 'yahoo-jp-ma-api/utility'
+        require 'rexml/document'
+        xml_pairs = {}
+        xml_pairs['<result><info><title>Title1</title><data>1234</data></info><info><title>Title2</title><data>5678</data></info></result>'] = {:result=>{:info=>[{:title=>"Title1", :data=>"1234"}, {:title=>"Title2", :data=>"5678"}]}}
+        xml_pairs['<hoge></hoge>'] = {:hoge=>nil}
+        xml_pairs['<hoge><foo><bar>piyo</bar></foo></hoge>'] = {:hoge=>{:foo=>{:bar=>"piyo"}}}
+
+        xml_pairs.each do |xml,expected|
+            rexml = REXML::Document.new xml
+            result = Hash.from_xml rexml
+            assert_equal result,expected
+        end
+    end
 end
