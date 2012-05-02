@@ -6,6 +6,7 @@ module YahooMA
         attr_accessor *Config::CONFIG_KEYS
 
         require 'yahoo-jp-ma-api/client/keyphrase'
+        include YahooMA::Client::Keyphrase
 
         # def initialize attrs={}
         #     attrs = self.options.merge attrs
