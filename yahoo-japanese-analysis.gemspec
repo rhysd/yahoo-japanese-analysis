@@ -12,4 +12,5 @@ Gem::Specification.new do |s|
     s.files                =  `git ls-files`.split("\n")
     s.test_files           =  ['test/test_all.rb']
     s.homepage             =  'https://github.com/rhysd/yahoo-japanese-analysis'
+    s.license              =  ['MIT']
 end
