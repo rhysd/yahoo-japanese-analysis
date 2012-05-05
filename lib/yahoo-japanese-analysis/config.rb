@@ -1,5 +1,9 @@
 module YahooJA
 
+    #
+    # Config module.
+    # You should set appid before using APIs.
+    #
     module Config
         DEFAULT_APP_KEY = nil
 
@@ -7,6 +11,18 @@ module YahooJA
 
         attr_accessor *CONFIG_KEYS
 
+        #
+        # set appid
+        #
+        #   YahooJA.configure do |config|
+        #       config.app_key = 'hogehoge'
+        #   end
+        #
+        #   c = YahooJA::Client.new
+        #   c.configure do |config|
+        #       config.app_key = 'hogehoge'
+        #   end
+        #
         def configure
             yield self
             self
@@ -24,6 +40,7 @@ module YahooJA
             base.reset
         end
 
+        # reset config setting
         def reset
             self.app_key = DEFAULT_APP_KEY
         end

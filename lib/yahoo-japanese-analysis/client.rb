@@ -1,6 +1,10 @@
 require 'yahoo-japanese-analysis/config'
 
 module YahooJA
+
+    #
+    # Client to use Yahoo! Japan Text Analysis API.
+    #
     class Client
 
         include YahooJA::Config

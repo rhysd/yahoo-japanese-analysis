@@ -6,6 +6,15 @@ module YahooJA
         module Keyphrase
             include YahooJA::Request
 
+            #
+            # "特徴語抽出" API
+            #
+            # @args
+            #   @text text to analyze
+            #   @opts other options.
+            # @return Hash( key: word, value: score )
+            # @see http://developer.yahoo.co.jp/webapi/jlp/keyphrase/v1/extract.html
+            #
             def keyphrase text,opts={}
                 raise "appid is needed" unless self.app_key
                 params = {:sentence => text}.merge(opts) do |k,v1,v2|
