@@ -31,16 +31,13 @@ class TestBase < Test::Unit::TestCase
         assert_equal YahooJA::Version.minor.class,Fixnum
         assert_equal YahooJA::Version.patch.class,Fixnum
         assert( !YahooJA::Version.pre || (YahooJA::Version.pre.class == String) )
-        assert YahooJA::Version.to_s =~ /^\d+?\.\d+?\.\d+?.*?$/
+        assert YahooJA::Version.to_s =~ /^\d+?\.\d+?\.\d+?.*$/
     end
 
     # test YahooJA class methods for lightweight-use
     def test_gateway
-        [ :configure, :options, :reset,
-          :keyphrase, :morpheme_analysis, :furigana,
-          :kanji_conv, :kousei_support, :kakari_uke
-        ].each do |m|
-            assert YahooJA.respond_to?(m),"#{m} is missing."
+        YahooJA::Client.instance_methods.each do |m|
+            assert YahooJA.respond_to?(m),"instance method, #{m}, is missing."
         end
     end
 
