@@ -1,10 +1,10 @@
-require 'yahoo-jp-ma-api/request'
+require 'yahoo-japanese-analysis/request'
 require 'rexml/document'
 
-module YahooMA
+module YahooJA
     class Client
         module Keyphrase
-            include YahooMA::Request
+            include YahooJA::Request
 
             def keyphrase text,opts={}
                 raise "appid is needed" unless self.app_key

@@ -1,17 +1,17 @@
-require 'yahoo-jp-ma-api/client'
+require 'yahoo-japanese-analysis/client'
 
-module YahooMA
+module YahooJA
     class << self
 
         # override to delegate
         def method_missing name,*args,&block
-            @client ||= YahooMA::Client.new opts
+            @client ||= YahooJA::Client.new opts
             return super if @client.respond_to? name
             @client.send name,*args,&block
         end
 
         def respond_to? name,include_private=false
-            @client ||= YahooMA::Client.new opts
+            @client ||= YahooJA::Client.new opts
             @client.respond_to?(name,include_private) || super(name,include_private)
         end
 

@@ -1,9 +1,9 @@
-module YahooMA
+module YahooJA
     class Client
         module MorphemeAnalysis
 
-            require 'yahoo-jp-ma-api/service_base'
-            include YahooMA::ServiceBase
+            require 'yahoo-japanese-analysis/service_base'
+            include YahooJA::ServiceBase
 
             def morpheme_analysis text,opts={}
                 use_service 'http://jlp.yahooapis.jp/MAService/V1/parse',self.app_key,text,opts

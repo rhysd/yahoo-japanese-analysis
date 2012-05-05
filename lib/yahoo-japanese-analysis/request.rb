@@ -1,4 +1,4 @@
-module YahooMA
+module YahooJA
     module Request
 
         require 'uri'

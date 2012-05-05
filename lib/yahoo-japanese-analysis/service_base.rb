@@ -1,10 +1,10 @@
-module YahooMA
+module YahooJA
     module ServiceBase
 
         require 'rexml/document'
 
-        require 'yahoo-jp-ma-api/request'
-        include YahooMA::Request
+        require 'yahoo-japanese-analysis/request'
+        include YahooJA::Request
 
         def use_service url,appid,text,opts={}
             raise "appid is needed" unless appid
@@ -14,7 +14,7 @@ module YahooMA
             res = request url, appid, params
 
             doc = REXML::Document.new(res)
-            xml_to_hash REXML::Document.new(res)[:ResultSet]
+            xml_to_hash(REXML::Document.new(res))[:ResultSet]
         end
 
         private
@@ -24,7 +24,7 @@ module YahooMA
         end
 
         def xml_elem_to_hash elem
-            if elem.has_elements?
+            value = if elem.has_elements?
                 children = {}
                 elem.each_element do |e|
                     # children << xml_elem_to_hash(e)
@@ -36,10 +36,11 @@ module YahooMA
                         end
                     end
                 end
-                return { elem.name.to_sym => children }
+                children
             else
-                return { elem.name.to_sym => elem.text }
+                elem.text
             end
+            { elem.name.to_sym => value }
         end
 
     end

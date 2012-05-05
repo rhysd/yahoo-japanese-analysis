@@ -1,4 +1,4 @@
-module YahooMA
+module YahooJA
 
     module Config
         DEFAULT_APP_KEY = nil

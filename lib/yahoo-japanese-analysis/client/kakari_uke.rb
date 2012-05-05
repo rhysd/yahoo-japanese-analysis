@@ -1,9 +1,9 @@
-module YahooMA
+module YahooJA
     class Client
         module KakariUke
 
-            require 'yahoo-jp-ma-api/service_base'
-            include YahooMA::ServiceBase
+            require 'yahoo-japanese-analysis/service_base'
+            include YahooJA::ServiceBase
 
             # kakari-uke service doesn't have any option
             def kakari_uke text

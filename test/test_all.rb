@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 require './pre_test.rb'
-require 'yahoo-jp-ma-api'
+require 'yahoo-japanese-analysis'
 require 'test/unit'
 require 'yaml'
 
@@ -10,12 +10,12 @@ class TestBase < Test::Unit::TestCase
 
     def setup
         @appid = YAML.load(File.open('credential.yaml').read)['my_appid']
-        @client = YahooMA::Client.new
+        @client = YahooJA::Client.new
     end
 
     def test_base_client
         assert_not_nil @client
-        assert_instance_of YahooMA::Client, @client
+        assert_instance_of YahooJA::Client, @client
         assert_respond_to @client,:configure
         assert_respond_to @client,:options
         assert_respond_to @client,:reset
@@ -26,8 +26,8 @@ class TestBase < Test::Unit::TestCase
         assert_equal @client.app_key,@appid
     end
 
-    require 'yahoo-jp-ma-api/service_base'
-    include YahooMA::ServiceBase
+    require 'yahoo-japanese-analysis/service_base'
+    include YahooJA::ServiceBase
 
     # test xml_to_hash
     def test_service_base
@@ -52,7 +52,7 @@ class TestFeatures < Test::Unit::TestCase
 
     def setup
         @appid = YAML.load(File.open('credential.yaml').read)['my_appid']
-        @client = YahooMA::Client.new
+        @client = YahooJA::Client.new
     end
 
     def test_keyphrase
