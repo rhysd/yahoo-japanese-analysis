@@ -34,6 +34,16 @@ class TestBase < Test::Unit::TestCase
         assert YahooJA::Version.to_s =~ /^\d+?\.\d+?\.\d+?.*?$/
     end
 
+    # test YahooJA class methods for lightweight-use
+    def test_gateway
+        [ :configure, :options, :reset,
+          :keyphrase, :morpheme_analysis, :furigana,
+          :kanji_conv, :kousei_support, :kakari_uke
+        ].each do |m|
+            assert YahooJA.respond_to?(m),"#{m} is missing."
+        end
+    end
+
     require 'yahoo-japanese-analysis/service_base'
     include YahooJA::ServiceBase
 

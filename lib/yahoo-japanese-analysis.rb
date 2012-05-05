@@ -6,13 +6,13 @@ module YahooJA
 
         # override to delegate
         def method_missing name,*args,&block
-            @client ||= YahooJA::Client.new opts
-            return super if @client.respond_to? name
+            @client ||= YahooJA::Client.new
+            return super unless @client.respond_to? name
             @client.send name,*args,&block
         end
 
         def respond_to? name,include_private=false
-            @client ||= YahooJA::Client.new opts
+            @client ||= YahooJA::Client.new
             @client.respond_to?(name,include_private) || super(name,include_private)
         end
 
