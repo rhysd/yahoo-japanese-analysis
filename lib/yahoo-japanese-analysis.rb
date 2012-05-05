@@ -1,4 +1,5 @@
 require 'yahoo-japanese-analysis/client'
+require 'yahoo-japanese-analysis/version'
 
 module YahooJA
     class << self

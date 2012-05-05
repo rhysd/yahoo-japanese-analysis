@@ -26,6 +26,14 @@ class TestBase < Test::Unit::TestCase
         assert_equal @client.app_key,@appid
     end
 
+    def test_version
+        assert_equal YahooJA::Version.major.class,Fixnum
+        assert_equal YahooJA::Version.minor.class,Fixnum
+        assert_equal YahooJA::Version.patch.class,Fixnum
+        assert( !YahooJA::Version.pre || (YahooJA::Version.pre.class == String) )
+        assert YahooJA::Version.to_s =~ /^\d+?\.\d+?\.\d+?.*?$/
+    end
+
     require 'yahoo-japanese-analysis/service_base'
     include YahooJA::ServiceBase
 
