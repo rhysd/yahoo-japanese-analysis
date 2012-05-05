@@ -14,7 +14,7 @@ module YahooMA
             res = request url, appid, params
 
             doc = REXML::Document.new(res)
-            xml_to_hash REXML::Document.new(res)
+            xml_to_hash REXML::Document.new(res)[:ResultSet]
         end
 
         private

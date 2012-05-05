@@ -74,11 +74,10 @@ class TestFeatures < Test::Unit::TestCase
         result = nil
         assert_nothing_raised{ result = @client.morpheme_analysis text,{:results => "ma,uniq"} }
         assert_not_nil result
-        p result
-        assert_not_nil result[:ResultSet][:ma_result][:total_count]
-        assert_not_nil result[:ResultSet][:ma_result][:word_list][:word].first[:surface]
-        assert_not_nil result[:ResultSet][:uniq_result][:total_count]
-        assert_not_nil result[:ResultSet][:uniq_result][:word_list][:word].first[:surface]
+        assert_not_nil result[:ma_result][:total_count]
+        assert_not_nil result[:ma_result][:word_list][:word].first[:surface]
+        assert_not_nil result[:uniq_result][:total_count]
+        assert_not_nil result[:uniq_result][:word_list][:word].first[:surface]
     end
 
     def test_furigana
@@ -88,7 +87,7 @@ class TestFeatures < Test::Unit::TestCase
         result = nil
         assert_nothing_raised{ result = @client.furigana text }
         assert_not_nil result
-        assert_not_nil result[:ResultSet][:Result][:WordList][:Word].first[:Surface]
+        assert_not_nil result[:Result][:WordList][:Word].first[:Surface]
     end
 
     def test_kanji_conv
@@ -98,7 +97,7 @@ class TestFeatures < Test::Unit::TestCase
         result = nil
         assert_nothing_raised{ result = @client.kanji_conv text }
         assert_not_nil result
-        assert_not_nil result[:ResultSet][:Result][:SegmentList][:Segment].first[:CandidateList]
+        assert_not_nil result[:Result][:SegmentList][:Segment].first[:CandidateList]
     end
 
     def test_kousei_support
@@ -108,7 +107,7 @@ class TestFeatures < Test::Unit::TestCase
         result = nil
         assert_nothing_raised{ result = @client.kousei_support text }
         assert_not_nil result
-        assert_not_nil result[:ResultSet][:Result].first[:ShitekiInfo]
+        assert_not_nil result[:Result].first[:ShitekiInfo]
     end
 
     def test_kakari_uke
@@ -118,6 +117,6 @@ class TestFeatures < Test::Unit::TestCase
         result = nil
         assert_nothing_raised{ result = @client.kakari_uke text }
         assert_not_nil result
-        assert_not_nil result[:ResultSet][:Result][:ChunkList][:Chunk].first[:MorphemList][:Morphem].first[:Feature]
+        assert_not_nil result[:Result][:ChunkList][:Chunk].first[:MorphemList][:Morphem].first[:Feature]
     end
 end
