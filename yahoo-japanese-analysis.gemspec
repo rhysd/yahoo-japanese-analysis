@@ -3,7 +3,7 @@ require File.expand_path '../lib/yahoo-japanese-analysis/version',__FILE__
 Gem::Specification.new do |s|
     s.name                  =  'yahoo-japanese-analysis'
     s.version               =  YahooJA::Version.to_s
-    s.date                  =  '2012-05-06'
+    s.date                  =  Time.now.to_s.split.first
     s.summary               =  "Japanese Analysis API Wrapper."
     s.description           =  "Yahoo! Japan Text Analysis API Wrapper."
     s.authors               =  ["rhysd"]
