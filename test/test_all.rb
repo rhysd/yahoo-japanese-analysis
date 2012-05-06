@@ -9,7 +9,7 @@ require 'yaml'
 class TestBase < Test::Unit::TestCase
 
     def setup
-        @appid = YAML.load(File.open('credential.yaml').read)['my_appid']
+        @appid = YAML.load(File.open('credential.yml').read)['my_appid']
         @client = YahooJA::Client.new
     end
 
@@ -66,7 +66,7 @@ end
 class TestFeatures < Test::Unit::TestCase
 
     def setup
-        @appid = YAML.load(File.open('credential.yaml').read)['my_appid']
+        @appid = YAML.load(File.open('credential.yml').read)['my_appid']
         @client = YahooJA::Client.new
     end
 

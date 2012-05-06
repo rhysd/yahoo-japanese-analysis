@@ -1,6 +1,6 @@
 #Yahoo Japanese Analysis Library
 
-This is Yahoo! Japan Text Analysis Wrapper for Ruby.
+This is Yahoo! Japan Text Analysis API Wrapper for Ruby.
 
 See below to get more info.
 
@@ -14,7 +14,7 @@ You must register at http://developer.yahoo.co.jp/ .
 
 And you can get appid to access APIs
 
-##Installation gem
+##Gem Installation
     % gem install yahoo-japanese-analysis
 
 #Example
