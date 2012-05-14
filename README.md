@@ -17,6 +17,19 @@ And you can get appid to access APIs
 ##Gem Installation
     % gem install yahoo-japanese-analysis
 
+#Features
+
+- 日本語形態素解析
+- かな漢字変換
+- ルビ振り
+- 校正支援
+- 日本語係り受け解析
+- 特長語抽出
+
+check below URL to get more detail.
+
+http://developer.yahoo.co.jp/webapi/jlp/
+
 #Example
 
 see https://gist.github.com/2605666
