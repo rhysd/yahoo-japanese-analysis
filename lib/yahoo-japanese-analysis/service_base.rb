@@ -2,13 +2,15 @@ module YahooJA
     module ServiceBase
 
         require 'rexml/document'
+        require 'open-uri'
 
         require 'yahoo-japanese-analysis/request'
         include YahooJA::Request
 
         def use_service url,appid,text,opts={}
             raise "appid is needed" unless appid
-            params = {:sentence => text}.merge(opts) do |k,v1,v2|
+            encoded_text = URI.encode text
+            params = {:sentence => encoded_text}.merge(opts) do |k,v1,v2|
                 raise "you shouldn't set #{k} as opts. it is already set."
             end
             res = request url, appid, params
