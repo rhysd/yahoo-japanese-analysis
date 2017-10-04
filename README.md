@@ -1,4 +1,4 @@
-#Yahoo Japanese Analysis Library
+# Yahoo Japanese Analysis Library
 
 This is Yahoo! Japan Text Analysis API Wrapper for Ruby.
 
@@ -6,18 +6,18 @@ See below to get more info.
 
 http://developer.yahoo.co.jp/webapi/jlp/
 
-#Installation
+# Installation
 
-##Yahoo! Japan Developers' Network Registration
+## Yahoo! Japan Developers' Network Registration
 
 You must register at http://developer.yahoo.co.jp/ .
 
 And you can get appid to access APIs
 
-##Gem Installation
+## Gem Installation
     % gem install yahoo-japanese-analysis
 
-#Features
+# Features
 
 - 日本語形態素解析
 - かな漢字変換
@@ -30,11 +30,11 @@ check below URL to get more detail.
 
 http://developer.yahoo.co.jp/webapi/jlp/
 
-#Example
+# Example
 
 see https://gist.github.com/2605666
 
-#LICENSE
+# LICENSE
 
 ## The MIT License
 
